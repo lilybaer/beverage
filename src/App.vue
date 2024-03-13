@@ -16,6 +16,48 @@
           </label>
         </template>
       </li>
+      <li>
+        <template v-for="creamer in Creamer" :key="creamer">
+          <label>
+            <input
+              type="radio"
+              name="creamer"
+              :id="`r${creamer}`"
+              :value="creamer"
+              v-model="currentCreamer"
+            />
+            {{ creamer }}
+          </label>
+        </template>
+      </li>
+      <li>
+        <template v-for="syrup in Syrups" :key="syrup">
+          <label>
+            <input
+              type="radio"
+              name="syrup"
+              :id="`r${syrup}`"
+              :value="syrup"
+              v-model="currentSyrup"
+            />
+            {{ syrup }}
+          </label>
+        </template>
+      </li>
+      <li>
+        <template v-for=Bases" in Base" :key="baseBeverage">
+          <label>
+            <input
+              type="radio"
+              name="baseBeverage"
+              :id="`r${baseBeverage}`"
+              :value="baseBeverage"
+              v-model="currentBaseBeverage"
+            />
+            {{ baseBeverage }}
+          </label>
+        </template>
+      </li>
     </ul>
   </div>
 </template>
