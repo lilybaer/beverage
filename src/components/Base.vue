@@ -23,6 +23,10 @@ const Bases: BaseBeverage[] = [
     name: "Coffee",
     color: "#6F4E37",
   },
+  {
+    name: "None",
+    color: "",
+  },
 ];
 
 const props = defineProps({
