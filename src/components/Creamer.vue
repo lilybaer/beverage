@@ -1,6 +1,7 @@
 <template>
-  <div class="froth">
+  <div class="froth" :style="{ backgroundColor: creamerColor }">
     <div v-for=" in 5" class="foam"></div>
+    {/* :style="{ backgroundColor: creamerColor } not sure if foam needs to also change color*/}
   </div>
 </template>
 
@@ -26,11 +27,29 @@ const Creamers: Creamer[] = [
     name: "Half & Half",
     color: "#FFFACD",
   },
+  {
+    name: "None",
+    color: ""
+  },
 ];
 
-const props = withDefaults(defineProps<Prop>(), {
-  name: "Milk",
+const props = defineProps({
+  creamer: String,
 });
+
+const creamerColor = computed(() => {
+  // Find the selected base beverage in the Bases array
+  const selectedCreamer = Creamers.find(creamer => creamer.name === props.creamer);
+
+  // If a matching base beverage is found, return its color
+  if (selectedCreamer) {
+    return selectedCreamer.color;
+  } else {
+    // If no matching base beverage is found, return a default color or handle the case accordingly
+    return '#6F4E37'; // Default color 
+  }
+});
+
 </script>
 <style lang="scss" scoped>
 .froth {

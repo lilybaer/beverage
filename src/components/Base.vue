@@ -41,8 +41,8 @@ const baseColor = computed(() => {
   if (selectedBase) {
     return selectedBase.color;
   } else {
-    // If no matching base beverage is found, you can return a default color or handle the case accordingly
-    return 'black'; // Default color (change this according to your needs)
+    // If no matching base beverage is found, return a default color or handle the case accordingly
+    return '#6F4E37'; // Default color 
   }
 });
 </script>

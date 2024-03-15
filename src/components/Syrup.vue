@@ -38,8 +38,8 @@ const syrupColor = computed(() => {
   if (selectedSyrup) {
     return selectedSyrup.color;
   } else {
-    // If no matching syrup is found, you can return a default color or handle the case accordingly
-    return '#FFEFD5'; // Default color (change this according to your needs)
+    // If no matching syrup is found, return a default color or handle the case accordingly
+    return '#FFEFD5'; // Default color 
   }
 });
 
