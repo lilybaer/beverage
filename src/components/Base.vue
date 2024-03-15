@@ -1,16 +1,15 @@
 <template>
-  <div class="baseBeverage"></div>
+  <div class="baseBeverage" :style="{ backgroundColor: baseColor }"></div>
 </template>
 
 <script setup lang="ts">
-import { computed } from "vue";
-type Prop = {
-  name: string;
-};
+import { defineProps, computed } from "vue";
+
 type BaseBeverage = {
   name: string;
   color: string;
 };
+
 const Bases: BaseBeverage[] = [
   {
     name: "Black Tea",
@@ -26,8 +25,21 @@ const Bases: BaseBeverage[] = [
   },
 ];
 
-const props = withDefaults(defineProps<Prop>(), {
-  name: "Black Tea",
+const props = defineProps({
+  baseBeverage: String,
+});
+
+const baseColor = computed(() => {
+  // Find the selected base beverage in the Bases array
+  const selectedBase = Bases.find(base => base.name === props.baseBeverage);
+
+  // If a matching base beverage is found, return its color
+  if (selectedBase) {
+    return selectedBase.color;
+  } else {
+    // If no matching base beverage is found, you can return a default color or handle the case accordingly
+    return 'black'; // Default color (change this according to your needs)
+  }
 });
 </script>
 
@@ -39,6 +51,5 @@ const props = withDefaults(defineProps<Prop>(), {
   bottom: 0;
   animation: pour-tea 2s;
   z-index: 300;
-  /* // border-radius: 0.05em 0.05em 2.2em 2.2em; */
 }
 </style>
