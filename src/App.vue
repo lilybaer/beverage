@@ -17,7 +17,7 @@
         </template>
       </li>
       <li>
-        <template v-for="creamer in Creamer" :key="creamer">
+        <template v-for="creamer in creamers" :key="creamer">
           <label>
             <input
               type="radio"
@@ -31,7 +31,7 @@
         </template>
       </li>
       <li>
-        <template v-for="syrup in Syrups" :key="syrup">
+        <template v-for="syrup in syrups" :key="syrup">
           <label>
             <input
               type="radio"
@@ -45,16 +45,16 @@
         </template>
       </li>
       <li>
-        <template v-for=Bases" in Base" :key="baseBeverage">
+        <template v-for="base in bases" :key="baseBeverage">
           <label>
             <input
               type="radio"
               name="baseBeverage"
-              :id="`r${baseBeverage}`"
-              :value="baseBeverage"
+              :id="`r${base}`"
+              :value="base"
               v-model="currentBaseBeverage"
             />
-            {{ baseBeverage }}
+            {{ base }}
           </label>
         </template>
       </li>
@@ -68,6 +68,12 @@ import Beverage from "./components/Beverage.vue";
 // Define reactive data
 const temps = ref(["Hot", "Cold"]);
 const currentTemp = ref("Hot");
+const creamers = ref(["None", "Milk", "Cream", "Half & Half"]);
+const currentCreamer = ref("None");
+const syrups = ref(["None", "Vanilla", "Caramel", "Hazelnut"]);
+const currentSyrup = ref("None");
+const bases = ref(["Coffee", "Green Tea", "Black Tea"]);
+const currentBaseBeverage = ref("Coffee");
 </script>
 
 <style lang="scss">
