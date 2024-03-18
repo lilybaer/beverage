@@ -3,10 +3,10 @@
     <Cold v-if="isIced" />
     <Hot v-else />
     <Contents>
-      <template v-slot:top>
+      <template v-if="selecteCreamer !== 'None' || selectedSyrup !== 'None'" v-slot:top>
         <Creamer :creamer="selectedCreamer"/>
       </template>
-      <template v-slot:mid>
+      <template v-if="selectedSyrup !== 'None'" v-slot:mid>
         <Syrup :syrup="selectedSyrup"/>
       </template>
       <template v-slot:bottom>
@@ -31,5 +31,5 @@ type Props = {
   selectedSyrup: string;
   baseBeverage: string;
 };
-defineProps<Props>();
+const props = defineProps<Props>();
 </script>

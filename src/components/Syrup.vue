@@ -31,6 +31,9 @@ const props = defineProps({
 });
 
 const syrupColor = computed(() => {
+  if(props.syrup === "None"){
+    return null;
+  }
   // Find the selected syrup in the Syrups array
   const selectedSyrup = Syrups.find(syrup => syrup.name === props.syrup);
 

@@ -1,5 +1,5 @@
 <template>
-  <div class="froth">
+  <div v-if="creamColor !== null" class="froth">
     <div v-for=" in 5" class="foam" :style="{ backgroundColor: creamerColor}"></div> 
   </div>
 </template>
@@ -28,7 +28,7 @@ const Creamers: Creamer[] = [
   },
   {
     name: "None",
-    color: ""
+    color: null
   },
 ];
 
@@ -37,17 +37,13 @@ const props = defineProps({
 });
 
 const creamerColor = computed(() => {
-  // Find the selected base beverage in the Bases array
-  const selectedCreamer = Creamers.find(creamer => creamer.name === props.creamer);
-
-  // If a matching base beverage is found, return its color
-  if (selectedCreamer) {
-    return selectedCreamer.color;
-  } else {
-    // If no matching base beverage is found, return a default color or handle the case accordingly
-    return '#6F4E37'; // Default color 
+  if(props.creamer === "None"){
+    return null;
   }
+  const selectedCreamer = Creamers.find(creamer => creamer.name === props.creamer);
+  return selectedCreamer ? selectedCreamer.color : '#6F4E37';
 });
+
 
 </script>
 <style lang="scss" scoped>
