@@ -3,7 +3,7 @@
     <Cold v-if="isIced" />
     <Hot v-else />
     <Contents>
-      <template v-if="selecteCreamer !== 'None' || selectedSyrup !== 'None'" v-slot:top>
+      <template v-if="selectedCreamer !== 'None'" v-slot:top>
         <Creamer :creamer="selectedCreamer"/>
       </template>
       <template v-if="selectedSyrup !== 'None'" v-slot:mid>
