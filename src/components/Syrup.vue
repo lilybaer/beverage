@@ -4,9 +4,7 @@
 
 <script setup lang="ts">
 import { defineProps, computed } from "vue";
-type Prop = {
-  name: string;
-};
+
 type Syrup = {
   name: string;
   color: string;
@@ -32,7 +30,7 @@ const props = defineProps({
 
 const syrupColor = computed(() => {
   if(props.syrup === "None"){
-    return null;
+    return '';
   }
   // Find the selected syrup in the Syrups array
   const selectedSyrup = Syrups.find(syrup => syrup.name === props.syrup);

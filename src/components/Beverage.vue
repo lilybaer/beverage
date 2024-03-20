@@ -25,11 +25,11 @@ import Hot from "./Hot.vue";
 import Cold from "./Cold.vue";
 import { defineProps } from "vue";
 
-type Props = {
+interface Props {
   isIced: boolean;
   selectedCreamer: string;
   selectedSyrup: string;
   baseBeverage: string;
 };
-const props = defineProps<Props>();
+defineProps<Props>();
 </script>

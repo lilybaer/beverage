@@ -1,14 +1,12 @@
 <template>
-  <div v-if="creamColor !== null" class="froth">
+  <div v-if="creamerColor !== null" class="froth">
     <div v-for=" in 5" class="foam" :style="{ backgroundColor: creamerColor}"></div> 
   </div>
 </template>
 
 <script setup lang="ts">
 import { computed } from "vue";
-type Prop = {
-  name: string;
-};
+
 type Creamer = {
   name: string;
   color: string;
@@ -28,7 +26,7 @@ const Creamers: Creamer[] = [
   },
   {
     name: "None",
-    color: null
+    color: ''
   },
 ];
 
