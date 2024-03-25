@@ -1,12 +1,14 @@
 <template>
-  <div v-if="creamerColor !== null" class="froth">
-    <div v-for=" in 5" class="foam" :style="{ backgroundColor: creamerColor}"></div> 
+  <div class="froth">
+    <div v-for=" in 5" class="foam" :style="dynamicStyle"></div>
   </div>
 </template>
 
 <script setup lang="ts">
 import { computed } from "vue";
-
+type Prop = {
+  name: string;
+};
 type Creamer = {
   name: string;
   color: string;
@@ -24,25 +26,17 @@ const Creamers: Creamer[] = [
     name: "Half & Half",
     color: "#FFFACD",
   },
-  {
-    name: "None",
-    color: ''
-  },
 ];
 
-const props = defineProps({
-  creamer: String,
+const props = withDefaults(defineProps<Prop>(), {
+  name: "Milk",
 });
-
-const creamerColor = computed(() => {
-  if(props.creamer === "None"){
-    return null;
-  }
-  const selectedCreamer = Creamers.find(creamer => creamer.name === props.creamer);
-  return selectedCreamer ? selectedCreamer.color : '#6F4E37';
+const dynamicStyle = computed(() => {
+  const creamer = Creamers.find((creamer) => creamer.name === props.name);
+  return {
+    background: creamer?.color,
+  };
 });
-
-
 </script>
 <style lang="scss" scoped>
 .froth {

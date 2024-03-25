@@ -1,10 +1,12 @@
 <template>
-  <div class="syrup" :style="{ backgroundColor: syrupColor }"></div>
+  <div :style="dynamicStyle" class="syrup"></div>
 </template>
 
 <script setup lang="ts">
-import { defineProps, computed } from "vue";
-
+import { computed } from "vue";
+type Prop = {
+  name: string;
+};
 type Syrup = {
   name: string;
   color: string;
@@ -24,26 +26,21 @@ const Syrups: Syrup[] = [
   },
 ];
 
-const props = defineProps({
-  syrup: String,
+const props = withDefaults(defineProps<Prop>(), {
+  name: "Vanilla",
 });
-
-const syrupColor = computed(() => {
-  if(props.syrup === "None"){
-    return '';
-  }
-  // Find the selected syrup in the Syrups array
-  const selectedSyrup = Syrups.find(syrup => syrup.name === props.syrup);
-
-  // If a matching syrup is found, return its color
-  if (selectedSyrup) {
-    return selectedSyrup.color;
-  } else {
-    // If no matching syrup is found, return a default color or handle the case accordingly
-    return '#FFEFD5'; // Default color 
-  }
+const dynamicStyle = computed(() => {
+  const syrup = Syrups.find((syrup) => syrup.name === props.name);
+  return {
+    background: `repeating-linear-gradient(
+      45deg,
+      ${syrup?.color},
+      ${syrup?.color} 10px,
+      rgba(225, 207, 149, 1) 10px,
+      rgba(225, 207, 149, 1) 20px
+    )`,
+  };
 });
-
 </script>
 <style lang="scss" scoped>
 .syrup {

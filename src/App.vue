@@ -1,15 +1,19 @@
 <template>
   <div>
-    <Beverage :isIced="currentTemp === 'Cold'" :selectedCreamer="currentCreamer" :selectedSyrup="currentSyrup" :baseBeverage="currentBaseBeverage"/>
+    <Beverage
+      :isIced="currentTemp === 'Cold'"
+      :creamer="currentCreamer"
+      :syrup="currentSyrup"
+      :beverage="currentBeverage"
+    />
     <ul>
-      <li> 
-        <p style="display: inline-block; margin-right: 10px; font-weight: bold;">Temperature</p>
+      <li>
         <template v-for="temp in temps" :key="temp">
           <label>
             <input
               type="radio"
               name="temperature"
-              :id="`r${temp}`"
+              :id="`rtemp${temp}`"
               :value="temp"
               v-model="currentTemp"
             />
@@ -18,13 +22,12 @@
         </template>
       </li>
       <li>
-        <p style="display: inline-block; margin-right: 10px; font-weight: bold;">Creamers</p>
         <template v-for="creamer in creamers" :key="creamer">
           <label>
             <input
               type="radio"
-              name="creamer"
-              :id="`r${creamer}`"
+              name="Creamer"
+              :id="`rcreamer${creamer}`"
               :value="creamer"
               v-model="currentCreamer"
             />
@@ -33,13 +36,12 @@
         </template>
       </li>
       <li>
-        <p style="display: inline-block; margin-right: 10px; font-weight: bold;">Syrups</p>
         <template v-for="syrup in syrups" :key="syrup">
           <label>
             <input
               type="radio"
-              name="syrup"
-              :id="`r${syrup}`"
+              name="Syrup"
+              :id="`rsyrup${syrup}`"
               :value="syrup"
               v-model="currentSyrup"
             />
@@ -48,17 +50,16 @@
         </template>
       </li>
       <li>
-        <p style="display: inline-block; margin-right: 10px; font-weight: bold;">Bases</p>
-        <template v-for="base in bases" :key="baseBeverage">
+        <template v-for="baseBeverage in baseBeverages" :key="baseBeverage">
           <label>
             <input
               type="radio"
-              name="baseBeverage"
-              :id="`r${base}`"
-              :value="base"
-              v-model="currentBaseBeverage"
+              name="Base Beverage"
+              :id="`rbase${baseBeverage}`"
+              :value="baseBeverage"
+              v-model="currentBeverage"
             />
-            {{ base }}
+            {{ baseBeverage }}
           </label>
         </template>
       </li>
@@ -76,8 +77,8 @@ const creamers = ref(["None", "Milk", "Cream", "Half & Half"]);
 const currentCreamer = ref("None");
 const syrups = ref(["None", "Vanilla", "Caramel", "Hazelnut"]);
 const currentSyrup = ref("None");
-const bases = ref(["Coffee", "Green Tea", "Black Tea"]);
-const currentBaseBeverage = ref("Coffee");
+const baseBeverages = ref(["Coffee", "Green Tea", "Black Tea"]);
+const currentBeverage = ref("Coffee");
 </script>
 
 <style lang="scss">

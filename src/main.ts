@@ -1,5 +1,9 @@
-import { createApp } from 'vue'
-import './styles/mug.scss'
-import App from './App.vue'
+import { createApp } from "vue";
+import "./styles/mug.scss";
+import App from "./App.vue";
+import { createPinia } from "pinia";
+import piniaPluginPersistedState from "pinia-plugin-persistedstate";
 
-createApp(App).mount('#app')
+const pinia = createPinia();
+pinia.use(piniaPluginPersistedState);
+createApp(App).use(pinia).mount("#app");
