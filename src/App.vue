@@ -64,11 +64,20 @@
         </template>
       </li>
     </ul>
+    <!-- New input field for user's name -->
+    <label for="name">Name:</label>
+    <input type="text" id="name" v-model="userName" />
+
+    <!-- Button to save the users recipe -->
+    <button @click="MakeBeverage">Make Beverage</button>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref } from "vue";
+
+//import the pinia store
+import { useBeverageStore } from './stores/PiniaStore';
 import Beverage from "./components/Beverage.vue";
 // Define reactive data
 const temps = ref(["Hot", "Cold"]);
@@ -79,6 +88,37 @@ const syrups = ref(["None", "Vanilla", "Caramel", "Hazelnut"]);
 const currentSyrup = ref("None");
 const baseBeverages = ref(["Coffee", "Green Tea", "Black Tea"]);
 const currentBeverage = ref("Coffee");
+
+//create a beverage store
+const beverageStore = useBeverageStore();
+
+// Reactive variable to store user's name
+const userName = ref('');
+
+//save recipe function saves current user selections and adds the recipe to beverage store
+const MakeBeverage = () => {
+  const recipe = {
+    temperature: currentTemp.value,
+    creamer: currentCreamer.value,
+    syrup: currentSyrup.value,
+    baseBeverage: currentBeverage.value,
+  };
+  beverageStore.addRecipe(recipe);
+
+// Add the recipe to the Pinia store
+beverageStore.$patch((state: {
+recipes: {
+temperature: string; creamer: string;
+//import the pinia store
+syrup: string; baseBeverage: string;
+}[];
+}) => {
+    state.recipes.push(recipe);
+  });
+};
+
+  // Clear the user's name after making the beverage
+  userName.value = '';
 </script>
 
 <style lang="scss">
