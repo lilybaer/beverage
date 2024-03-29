@@ -1,0 +1,12 @@
+Fixed previous issues and adjusted margins/font size to make it fit the page better.
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+#
+# On branch main
+# Your branch is up to date with 'origin/main'.
+#
+# Changes to be committed:
+#	modified:   src/App.vue
+#	modified:   src/stores/PiniaStore.ts
+#	modified:   src/styles/mug.scss
+#

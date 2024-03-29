@@ -124,7 +124,13 @@ const makeBeverage = () => {
 };
 
 // Function to display a beverage corresponding to a recipe
-const showBeverage = (recipe) => {
+interface Recipe{
+  temperature: string;
+  creamer: string;
+  syrup: string;
+  baseBeverage: string;
+}
+const showBeverage = (recipe: Recipe) => {
   // Update current selections based on the recipe
   currentTemp.value = recipe.temperature;
   currentCreamer.value = recipe.creamer;
