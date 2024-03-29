@@ -8,17 +8,10 @@ export const useBeverageStore = defineStore('beverage', {
   }),
 
   actions: {
-    addRecipe(recipe: { name: string; temperature: string; creamer: string; syrup: string; baseBeverage: string }) {
-      this.recipes.push(recipe);
+    addRecipe(recipeWithUsername: { name: string; temperature: string; creamer: string; syrup: string; baseBeverage: string }) {
+      this.recipes.push(recipeWithUsername);
     },
-
-    getAllRecipes() {
-      return this.recipes;
-    },
-
-    selectRecipe(recipe: { name: string; temperature: string; creamer: string; syrup: string; baseBeverage: string }) {
-      this.selectedRecipe = recipe;
-    },
+    
     clearRecipes() {
       this.recipes = [];
     },

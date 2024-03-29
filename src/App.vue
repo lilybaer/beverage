@@ -6,62 +6,64 @@
       :syrup="currentSyrup"
       :beverage="currentBeverage"
     />
+    <h3 class="section-header">Temperature:</h3>
     <ul>
-      <li>
-        <template v-for="temp in temps" :key="temp">
-          <label>
-            <input
-              type="radio"
-              name="temperature"
-              :id="`rtemp${temp}`"
-              :value="temp"
-              v-model="currentTemp"
-            />
-            {{ temp }}
-          </label>
-        </template>
+      <li v-for="temp in temps" :key="temp">
+        <label>
+          <input
+            type="radio"
+            name="temperature"
+            :id="`rtemp${temp}`"
+            :value="temp"
+            v-model="currentTemp"
+          />
+          {{ temp }}
+        </label>
       </li>
-      <li>
-        <template v-for="creamer in creamers" :key="creamer">
-          <label>
-            <input
-              type="radio"
-              name="Creamer"
-              :id="`rcreamer${creamer}`"
-              :value="creamer"
-              v-model="currentCreamer"
-            />
-            {{ creamer }}
-          </label>
-        </template>
+    </ul>
+    <h3 class="section-header">Creamer:</h3> 
+    <ul>
+      <li v-for="creamer in creamers" :key="creamer">
+        <label>
+          <input
+            type="radio"
+            name="Creamer"
+            :id="`rcreamer${creamer}`"
+            :value="creamer"
+            v-model="currentCreamer"
+          />
+          {{ creamer }}
+        </label>
       </li>
-      <li>
-        <template v-for="syrup in syrups" :key="syrup">
-          <label>
-            <input
-              type="radio"
-              name="Syrup"
-              :id="`rsyrup${syrup}`"
-              :value="syrup"
-              v-model="currentSyrup"
-            />
-            {{ syrup }}
-          </label>
-        </template>
+    </ul>
+    <h3 class="section-header">Syrup:</h3>
+    <ul>
+      <li v-for="syrup in syrups" :key="syrup">
+        <label>
+          <input
+            type="radio"
+            name="Syrup"
+            :id="`rsyrup${syrup}`"
+            :value="syrup"
+            v-model="currentSyrup"
+          />
+          {{ syrup }}
+        </label>
       </li>
-      <li>
-        <template v-for="baseBeverage in baseBeverages" :key="baseBeverage">
-          <label>
-            <input
-              type="radio"
-              name="Base Beverage"
-              :id="`rbase${baseBeverage}`"
-              :value="baseBeverage"
-              v-model="currentBeverage"
-            />
-            {{ baseBeverage }}
-          </label>
-        </template>
+    </ul>
+    <h3 class="section-header">Base Beverage:</h3>
+    <ul>
+      <li v-for="baseBeverage in baseBeverages" :key="baseBeverage">
+        <label>
+          <input
+            type="radio"
+            name="Base Beverage"
+            :id="`rbase${baseBeverage}`"
+            :value="baseBeverage"
+            v-model="currentBeverage"
+          />
+          {{ baseBeverage }}
+        </label>
       </li>
     </ul>
     <!-- New input field for user's name -->
@@ -69,15 +71,15 @@
     <input type="text" id="name" v-model="userName" />
 
     <!-- Button to save the users recipe -->
-    <button @click="MakeBeverage">Make Beverage</button>
+    <button @click="makeBeverage">Make Beverage</button>
 
     <!-- Display stored recipes -->
     <div v-if="recipes.length > 0">
-      <h2>Stored Recipes:</h2>
+      <h2 class="section-header">Stored Recipes:</h2>
       <ul>
         <li v-for="(recipe, index) in recipes" :key="index">
           <button @click="showBeverage(recipe)">
-            {{ recipe.temperature }}, {{ recipe.creamer }}, {{ recipe.syrup }}, {{ recipe.baseBeverage }}
+            {{ recipe.name }} 
           </button>
         </li>
       </ul>
@@ -109,8 +111,9 @@ const recipes = computed(() => beverageStore.recipes);
 const userName = ref('');
 
 //save recipe function saves current user selections and adds the recipe to beverage store
-const MakeBeverage = () => {
+const makeBeverage = () => {
   const recipe = {
+    name: userName.value,
     temperature: currentTemp.value,
     creamer: currentCreamer.value,
     syrup: currentSyrup.value,
@@ -130,9 +133,9 @@ const showBeverage = (recipe) => {
 };
 
 // Add the recipe to the Pinia store
-beverageStore.$patch((state) => {
-  state.recipes.push(recipe);
-});
+//beverageStore.$patch((state) => {
+//  state.recipes.push(recipe);
+//});
 
 </script>
 
@@ -150,4 +153,9 @@ html {
 ul {
   list-style: none;
 }
+.section-header{
+  font-size: .85rem;
+  margin-bottom: 0.05rem;
+}
+
 </style>
