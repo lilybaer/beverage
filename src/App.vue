@@ -69,16 +69,28 @@
     <input type="text" id="name" v-model="userName" />
 
     <!-- Button to save the users recipe -->
-    <button @click="MakeBeverage">Make Beverage</button>
+    <button @click="makeBeverage">Make Beverage</button>
+
+    <!-- Display stored recipes -->
+    <div v-if="recipes.length > 0">
+      <h2>Stored Recipes:</h2>
+      <ul>
+        <li v-for="(recipe, index) in recipes" :key="index">
+          <button @click="showBeverage(recipe)">
+            {{ recipe.temperature }}, {{ recipe.creamer }}, {{ recipe.syrup }}, {{ recipe.baseBeverage }}
+          </button>
+        </li>
+      </ul>
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
-
-//import the pinia store
+import { ref, computed } from "vue";
 import { useBeverageStore } from './stores/PiniaStore';
 import Beverage from "./components/Beverage.vue";
+
+
 // Define reactive data
 const temps = ref(["Hot", "Cold"]);
 const currentTemp = ref("Hot");
@@ -91,6 +103,7 @@ const currentBeverage = ref("Coffee");
 
 //create a beverage store
 const beverageStore = useBeverageStore();
+const recipes = computed(() => beverageStore.recipes);
 
 // Reactive variable to store user's name
 const userName = ref('');
@@ -104,21 +117,23 @@ const MakeBeverage = () => {
     baseBeverage: currentBeverage.value,
   };
   beverageStore.addRecipe(recipe);
-
-// Add the recipe to the Pinia store
-beverageStore.$patch((state: {
-recipes: {
-temperature: string; creamer: string;
-//import the pinia store
-syrup: string; baseBeverage: string;
-}[];
-}) => {
-    state.recipes.push(recipe);
-  });
+  userName.value = '';
 };
 
-  // Clear the user's name after making the beverage
-  userName.value = '';
+// Function to display a beverage corresponding to a recipe
+const showBeverage = (recipe) => {
+  // Update current selections based on the recipe
+  currentTemp.value = recipe.temperature;
+  currentCreamer.value = recipe.creamer;
+  currentSyrup.value = recipe.syrup;
+  currentBeverage.value = recipe.baseBeverage;
+};
+
+// Add the recipe to the Pinia store
+beverageStore.$patch((state) => {
+  state.recipes.push(recipe);
+});
+
 </script>
 
 <style lang="scss">
