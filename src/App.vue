@@ -69,7 +69,7 @@
     <input type="text" id="name" v-model="userName" />
 
     <!-- Button to save the users recipe -->
-    <button @click="makeBeverage">Make Beverage</button>
+    <button @click="MakeBeverage">Make Beverage</button>
 
     <!-- Display stored recipes -->
     <div v-if="recipes.length > 0">
