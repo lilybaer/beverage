@@ -1,10 +1,18 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-24ddc0f5d75046c5622901739e7c5dd533143b0c8e959d652212380cedb1ea36.svg)](https://classroom.github.com/a/LBCrcpys)
-# Project Details
+# *Dynamic Beverage Component - Coffee Recipe Customizer*
+This project features a dynamic beverage component that allows users to customize their coffee recipes by selecting ingredients such as creamers, syrups, and bases. The component uses Vue.js for interactivity and Pinia for state management.
 
-Hello students! For detailed instructions and requirements regarding this project, please click on the link below:
+## Features
+Dynamic Beverage Customization: Users can customize coffee recipes by selecting different ingredients (creamers, syrups, bases, etc.), and the visual representation of the beverage updates accordingly.
 
-[Details](https://gvsu-cis371.github.io/projects/3.html)
+State Management with Pinia: The application uses Pinia to manage the state of the beverage customization, ensuring a reactive and consistent user experience.
 
-Ensure you read and understand all the instructions before starting your work. If you have any questions or clarifications, please reach out.
+Color Changes Based on Selections: The color of the beverage dynamically updates based on the selected ingredients, providing a visual cue for each choice.
 
-Happy coding!
+Customizable Ingredients: The component supports a variety of ingredients that can be mixed and matched to create different coffee recipes.
+
+## Technologies Used
+Vue.js: The framework used to build the interactive beverage component.
+
+Pinia: A state management library for Vue.js, used to manage the application's state, including selected ingredients and customized beverages.
+
+CSS: Used to style the beverage component and ensure it adapts to various screen sizes.
